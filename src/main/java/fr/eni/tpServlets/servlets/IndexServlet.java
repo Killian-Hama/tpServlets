@@ -14,7 +14,7 @@ import fr.eni.tpServlets.util.ServletsTools;
 /**
  * Servlet implementation class IndexServlet
  */
-@WebServlet("/IndexServlet")
+@WebServlet(urlPatterns= {"/Test", "/test"})
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
