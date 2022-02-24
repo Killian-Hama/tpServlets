@@ -17,7 +17,7 @@ import fr.eni.tpServlets.util.ServletsTools;
 /**
  * Servlet implementation class SuiviRepasServlet
  */
-@WebServlet("/SuiviRepasServlet")
+@WebServlet("/getRepas")
 public class SuiviRepasHistoriqueServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

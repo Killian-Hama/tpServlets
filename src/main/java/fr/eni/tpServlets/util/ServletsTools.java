@@ -20,4 +20,8 @@ public class ServletsTools {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void Redirect(HttpServletResponse response, String servlet) throws IOException {
+		response.sendRedirect(servlet);
+	}
 }

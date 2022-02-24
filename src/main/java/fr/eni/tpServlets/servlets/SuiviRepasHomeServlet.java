@@ -29,7 +29,7 @@ public class SuiviRepasHomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ServletsTools.Render(request, response, "suiviRepas/home");	
+		ServletsTools.Render(request, response, "SuiviRepas/home");	
 	}
 
 	/**

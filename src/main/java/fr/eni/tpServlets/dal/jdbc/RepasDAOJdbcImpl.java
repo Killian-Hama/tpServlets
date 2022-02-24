@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +37,7 @@ public class RepasDAOJdbcImpl implements RepasDAO{
 			ResultSet rs = stmt.executeQuery(SELECTALL);
 			List<Repas> liste = new ArrayList<>();
 			while (rs.next()) {
-				liste.add(new Repas(rs.getInt("id"), rs.getDate("date"), rs.getString("repas").split(", ")));
+				liste.add(new Repas(rs.getInt("id"), rs.getTimestamp("date").toLocalDateTime(), rs.getString("repas").split(", ")));
 			}
 			return liste;
 
@@ -57,8 +60,8 @@ public class RepasDAOJdbcImpl implements RepasDAO{
 		try {
 			con = JdbcTools.getConnection();
 			stmt = con.prepareStatement(INSERT);
-			stmt.setDate(2, data.getDate());
-			stmt.setString(3, data.getRepas());
+			stmt.setTimestamp(1, Timestamp.valueOf(data.getDate()));
+			stmt.setString(2, data.getRepas());
 			try {
 				stmt.execute();
 			} catch (Exception e) {

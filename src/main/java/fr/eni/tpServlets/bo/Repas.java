@@ -1,25 +1,32 @@
 package fr.eni.tpServlets.bo;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 public class Repas {
 
 	private int id;
-	private Date date;
+	private LocalDateTime date;
 	private String[] aliments;
 	
-	public Repas(int id, Date date, String[] aliments) {
+	public Repas(int id, LocalDateTime date, String[] aliments) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.aliments = aliments;
+	}
+	
+	public Repas(LocalDateTime date, String repas) {
+		super();
+		this.date = date;
+		this.aliments = repas.split(", ");
 	}
 
 	public int getId() {
 		return id;
 	}
 
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
@@ -39,7 +46,6 @@ public class Repas {
 		}
 		return str.toString();
 	}
-	
 	
 
 }
