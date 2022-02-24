@@ -1,12 +1,17 @@
 package fr.eni.tpServlets.servlets;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.tpServlets.bll.BLLException;
+import fr.eni.tpServlets.bll.RepasManager;
+import fr.eni.tpServlets.bo.Repas;
 import fr.eni.tpServlets.util.ServletsTools;
 
 /**
@@ -30,7 +35,16 @@ public class SuiviRepasHistoriqueServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		ServletsTools.Render(request, response, "SuiviRepas/historique");		
+		try {
+			List<Repas> lr = RepasManager.getManager().listeRepas();
+
+			request.setAttribute("repas", lr);
+			ServletsTools.Render(request, response, "SuiviRepas/historique");		
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
