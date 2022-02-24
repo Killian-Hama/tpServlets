@@ -15,38 +15,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import fr.eni.tpServlets.util.JdbcTools;
+import fr.eni.tpServlets.util.UtilException;
+
 /**
  * Servlet implementation class TestConnexion
  */
 @WebServlet("/TestConnexion")
 public class TestConnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TestConnexion() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out= response.getWriter();
-		//Création d'un objet de type Context permettant la recherche d'une ressource nommée dans l'arbre JNDI
+	public TestConnexion() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		// Création d'un objet de type Context permettant la recherche d'une ressource
+		// nommée dans l'arbre JNDI
 		try {
-			Context context = new InitialContext();
-			//Recherche de la ressource
-			DataSource dataSource = (DataSource)context.lookup("java:comp/env/jdbc/pool_cnx");
-			//Demande d'une connexion. La méthode getConnection met la demande en attente tant qu'il n'y a pas de connexion disponible
-			Connection cnx = dataSource.getConnection();
-			//Exploitation de la connexion
-			out.print("La connexion est "+ (cnx.isClosed()?"fermée":"ouverte")+".");
-			//Libération de la connexion. Elle n'est pas fermée mais remise dans le pool
-			cnx.close();
-		} catch (NamingException | SQLException e) {
+			Connection cnx = JdbcTools.getConnection();
+
+			out.print("La connexion est " + (cnx.isClosed() ? "fermée" : "ouverte") + ".");
+
+			JdbcTools.seDeconnecter(cnx);
+		} catch (UtilException | SQLException e) {
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			e.printStackTrace();
 			out.println("Une erreur est survenue lors de l'utilisation de la base de données : " + e.getMessage());
@@ -55,9 +57,11 @@ public class TestConnexion extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
