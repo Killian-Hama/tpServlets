@@ -30,7 +30,7 @@ public class SuiviRepasHistoriqueServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		ServletsTools.Render(request, response, "suiviRepas");		
+		ServletsTools.Render(request, response, "SuiviRepas/historique");		
 	}
 
 	/**
