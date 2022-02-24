@@ -27,6 +27,8 @@
 							aria-current="page" href="<%= request.getContextPath() %>/home">Home</a></li>
 						<li class="nav-item"><a class="nav-link" href="<%= request.getContextPath() %>/test">Test</a>
 						</li>
+						<li class="nav-item"><a class="nav-link" href="<%= request.getContextPath() %>/suiviRepasHome">Suivi des repas</a>
+						</li>
 					</ul>
 				</div>
 			</div>
