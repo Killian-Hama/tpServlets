@@ -27,6 +27,19 @@ public class Repas {
 		return aliments;
 	}
 	
+	public String getRepas() {
+		StringBuilder str = new StringBuilder();
+		boolean once = true;
+		for (String string : aliments) {
+			if(once)
+				once = false;
+			else
+				str.append(", ");
+			str.append(string);
+		}
+		return str.toString();
+	}
+	
 	
 
 }
