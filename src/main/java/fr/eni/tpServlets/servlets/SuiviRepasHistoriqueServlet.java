@@ -20,37 +20,50 @@ import fr.eni.tpServlets.util.ServletsTools;
 @WebServlet("/getRepas")
 public class SuiviRepasHistoriqueServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SuiviRepasHistoriqueServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		try {
-			List<Repas> lr = RepasManager.getManager().listeRepas();
-
-			request.setAttribute("repas", lr);
-			ServletsTools.Render(request, response, "SuiviRepas/historique");		
-		} catch (BLLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+	public SuiviRepasHistoriqueServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		if (request.getParameter("id") != null) {
+			try {
+				RepasManager.getManager().supprimerRepas(Integer.parseInt(request.getParameter("id")));
+				ServletsTools.Redirect(response, "getRepas");
+			} catch (BLLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				List<Repas> lr = RepasManager.getManager().listeRepas();
+
+				request.setAttribute("repas", lr);
+				ServletsTools.Render(request, response, "SuiviRepas/historique");
+			} catch (BLLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

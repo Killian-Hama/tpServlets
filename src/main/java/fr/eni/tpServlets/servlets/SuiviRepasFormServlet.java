@@ -53,7 +53,7 @@ public class SuiviRepasFormServlet extends HttpServlet {
 		String repas = request.getParameter("repasInput");
 		try {
 			RepasManager.getManager().ajouterRepas(new Repas(datee, repas));
-			ServletsTools.Redirect(response, "/getRepas");
+			ServletsTools.Redirect(response, "/tpServlets/getRepas");
 		} catch (BLLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

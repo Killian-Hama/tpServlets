@@ -29,6 +29,10 @@ public class Repas {
 	public LocalDateTime getDate() {
 		return date;
 	}
+	
+	public String getTime() {
+		return date.toLocalTime().toString();
+		}
 
 	public String[] getAliments() {
 		return aliments;

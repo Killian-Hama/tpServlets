@@ -24,20 +24,20 @@ List<Repas> repas = (List<Repas>) request.getAttribute("repas");
 			%>
 			<tr>
 				<th scope="row"><%=repa.getId()%></th>
-				<td><%=repa.getDate()%></td>
-				<td><%=repa.getDate().getHours() %>:<%= repa.getDate().getMinutes() %></td>
+				<td><%=repa.getDate().toLocalDate()%></td>
+				<td><%=repa.getTime() %></td>
 				<td>
 					<button class="btn btn-primary" type="button"
-						data-bs-toggle="collapse" data-bs-target="#collapse"
+						data-bs-toggle="collapse" data-bs-target="#collapse<%= repa.getId() %>"
 						aria-expanded="false" aria-controls="collapseExample">+</button>
-					<a class="btn btn-danger">X</a>
+					<a class="btn btn-danger" href="<%= request.getContextPath() %>/getRepas?id=<%= repa.getId() %>">X</a>
 				</td>
 			</tr>
-			<tr class="collapse" id="collapse">
+			<tr class="collapse" id="collapse<%= repa.getId() %>">
 				<td colspan="4">
-					<div class="d-flex">
+					<div class="d-flex justify-content-center">
 						<%for (String aliment : repa.getAliments()) { %>
-						<div class="ml-2">&bull;	<%=aliment%></div>
+						<div class="mx-2">&bull;	<%=aliment%></div>
 						<%}%>
 					</div>
 				</td>
