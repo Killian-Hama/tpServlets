@@ -1,4 +1,4 @@
-package fr.eni.cliniqueVeterinaire.bll;
+package fr.eni.tpServlets.bll;
 
 public class BLLException extends Exception {
 	//Constructeurs

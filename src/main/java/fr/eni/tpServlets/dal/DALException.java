@@ -1,4 +1,4 @@
-package fr.eni.cliniqueVeterinaire.dal;
+package fr.eni.tpServlets.dal;
 
 public class DALException extends Exception {
 	//Constructeurs
