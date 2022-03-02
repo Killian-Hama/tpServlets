@@ -35,7 +35,7 @@ public class GestionNotes {
 		try {
 			Notes notes = new Notes(content);
 			notes.setId(NotesManager.getManager().ajouterNotes(notes));
-			return Response.status(Response.Status.OK).entity(notes).build();
+			return Response.status(Response.Status.CREATED).entity(notes).build();
 		} catch (BLLException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
 		}
@@ -47,7 +47,7 @@ public class GestionNotes {
 		try {
 			Notes notes = new Notes(id, content);
 			NotesManager.getManager().modifierNotes(notes);
-			return Response.status(Response.Status.OK).entity(notes).build();
+			return Response.status(Response.Status.).entity(notes).build();
 		} catch (BLLException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
 		}
