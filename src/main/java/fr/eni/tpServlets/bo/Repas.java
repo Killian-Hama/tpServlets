@@ -50,6 +50,10 @@ public class Repas {
 		}
 		return str.toString();
 	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 
 }

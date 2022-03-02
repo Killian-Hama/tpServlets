@@ -32,9 +32,9 @@ public class RepasManager {
 		}
 	}
 
-	public void ajouterRepas(Repas repas) throws BLLException {
+	public int ajouterRepas(Repas repas) throws BLLException {
 		try {
-			repasDao.insert(repas);
+			return repasDao.insert(repas);
 		} catch (DALException e) {
 			System.out.println(e);
 			throw new BLLException("Un probleme est survenue l'ors de l'ajout d'un nouvau repas. \nVeuillez ressayer.");

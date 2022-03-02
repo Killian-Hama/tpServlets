@@ -15,6 +15,7 @@ import fr.eni.tpServlets.util.JdbcTools;
 import fr.eni.tpServlets.util.UtilException;
 
 public class NotesDAOJdbcImpl implements NotesDAO {
+	
 	private final String SELECTALL = "SELECT * FROM pn_notes";
 	private final String INSERT = "INSERT INTO pn_notes VALUES(null, ?)";
 	private final String UPDATE = "UPDATE pn_notes SET content = ? WHERE id = ?";

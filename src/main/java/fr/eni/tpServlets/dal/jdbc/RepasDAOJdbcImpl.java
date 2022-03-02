@@ -54,16 +54,23 @@ public class RepasDAOJdbcImpl implements RepasDAO{
 		}
 	}
 	@Override
-	public void insert(Repas data) throws DALException {
+	public int insert(Repas data) throws DALException {
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
 			con = JdbcTools.getConnection();
-			stmt = con.prepareStatement(INSERT);
+			stmt = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 			stmt.setTimestamp(1, Timestamp.valueOf(data.getDate()));
 			stmt.setString(2, data.getRepas());
 			try {
 				stmt.execute();
+				try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+					if (generatedKeys.next()) {
+						return generatedKeys.getInt(1);
+					} else {
+						throw new DALException("Generated keys ");
+					}
+				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				throw new DALException("Probleme lors de l'insertion du : " + data.toString());
