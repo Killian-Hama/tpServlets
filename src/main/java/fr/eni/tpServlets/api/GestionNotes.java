@@ -47,7 +47,7 @@ public class GestionNotes {
 		try {
 			Notes notes = new Notes(id, content);
 			NotesManager.getManager().modifierNotes(notes);
-			return Response.status(Response.Status.).entity(notes).build();
+			return Response.status(Response.Status.OK).entity(notes).build();
 		} catch (BLLException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
 		}
