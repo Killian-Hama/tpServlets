@@ -23,4 +23,3 @@ public class BLLException extends Exception {
 		return sb.toString() ;
 	}	
 }
-
